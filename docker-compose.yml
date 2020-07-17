@@ -1,36 +1,36 @@
 version: '3'
 services:
-  saleboard-nginx:
+  api-nginx:
     build:
-      context: ./saleboard/docker/dev
+      context: ./api/docker/dev
       dockerfile: nginx.docker
     volumes:
-      - ./saleboard:/var/www/
-      - ./saleboard/public:/var/www/html
+      - ./api:/var/www/
+      - ./api/public:/var/www/html
     depends_on:
-      - saleboard-php-fpm
+      - api-php-fpm
     ports:
       - "80:80"
 
-  saleboard-php-fpm:
+  api-php-fpm:
     build:
-      context: ./saleboard/docker/dev
+      context: ./api/docker/dev
       dockerfile: php-fpm.docker
     volumes:
-      - ./saleboard:/var/www/
-#      - ./saleboard/docker/dev/php/php.ini:/usr/local/etc/php/php.ini
+      - ./api:/var/www/
+#      - ./api/docker/dev/php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - mydb
       - mailer
     environment:
       DOCKER_IP: 172.17.0.1
 
-  saleboard-php-cli:
+  api-php-cli:
     build:
-      context: ./saleboard/docker/dev
+      context: ./api/docker/dev
       dockerfile: php-cli.docker
     volumes:
-      - ./saleboard:/var/www/
+      - ./api:/var/www/
     #      - composer:/root/.composer/cache
     depends_on:
       - mydb
@@ -39,10 +39,10 @@ services:
   mydb:
     image: mysql:8
     volumes:
-      - ./saleboard/data/mysql:/var/lib/mysql
+      - ./api/data/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 1234567
-      MYSQL_DATABASE: saleboard
+      MYSQL_DATABASE: api
     ports:
       - "3306:3306"
 
