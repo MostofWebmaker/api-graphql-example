@@ -1,0 +1,41 @@
+version: '3'
+services:
+  saleboard-nginx:
+    image: ${REGISTRY_ADDRESS}/saleboard-nginx:${IMAGE_TAG}
+    restart: always
+    depends_on:
+      - serv-php-fpm
+    ports:
+      - "80:80"
+  saleboard-php-fpm:
+    image: ${REGISTRY_ADDRESS}/saleboard-php-fpm:${IMAGE_TAG}
+    restart: always
+    environment:
+      APP_SECRET: ${MANAGER_APP_SECRET}
+#      DATABASE_URL: pgsql://app:${MANAGER_DB_PASSWORD}@manager-postgres:5432/app
+      DATABASE_URL: mysql://app:${MANAGER_DB_PASSWORD}@manager-mysql:3306/app
+#      MAILER_URL: ${MANAGER_MAILER_URL}
+    depends_on:
+      - db
+  saleboard-php-cli:
+    image: ${REGISTRY_ADDRESS}/saleboard-php-cli:${IMAGE_TAG}
+    environment:
+      APP_SECRET: ${MANAGER_APP_SECRET}
+      #      DATABASE_URL: pgsql://app:${MANAGER_DB_PASSWORD}@manager-postgres:5432/app
+      DATABASE_URL: mysql://app:${MANAGER_DB_PASSWORD}@manager-mysql:3306/app
+#      MAILER_URL: ${MANAGER_MAILER_URL}
+    depends_on:
+      - db
+  db:
+    image: ${REGISTRY_ADDRESS}/db:${IMAGE_TAG}
+    restart: always
+    volumes:
+      - db:/var/lib/mysql/data
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MANAGER_DB_PASSWORD}
+      MYSQL_DATABASE: saleboard
+
+
+volumes:
+  db:
+  composer:

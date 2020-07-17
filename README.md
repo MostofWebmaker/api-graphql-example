@@ -1,2 +1,1 @@
-# api-graphql-example
-API GrapqQL Example
+# GraphQL API Example / web admin app

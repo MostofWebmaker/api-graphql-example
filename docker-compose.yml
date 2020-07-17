@@ -1,0 +1,56 @@
+version: '3'
+services:
+  saleboard-nginx:
+    build:
+      context: ./saleboard/docker/dev
+      dockerfile: nginx.docker
+    volumes:
+      - ./saleboard:/var/www/
+      - ./saleboard/public:/var/www/html
+    depends_on:
+      - saleboard-php-fpm
+    ports:
+      - "80:80"
+
+  saleboard-php-fpm:
+    build:
+      context: ./saleboard/docker/dev
+      dockerfile: php-fpm.docker
+    volumes:
+      - ./saleboard:/var/www/
+#      - ./saleboard/docker/dev/php/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mydb
+      - mailer
+    environment:
+      DOCKER_IP: 172.17.0.1
+
+  saleboard-php-cli:
+    build:
+      context: ./saleboard/docker/dev
+      dockerfile: php-cli.docker
+    volumes:
+      - ./saleboard:/var/www/
+    #      - composer:/root/.composer/cache
+    depends_on:
+      - mydb
+      - mailer
+
+  mydb:
+    image: mysql:8
+    volumes:
+      - ./saleboard/data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234567
+      MYSQL_DATABASE: saleboard
+    ports:
+      - "3306:3306"
+
+  mailer:
+    image: mailhog/mailhog
+    ports:
+      - "8100:8025"
+
+
+#volumes:
+#  composer:
