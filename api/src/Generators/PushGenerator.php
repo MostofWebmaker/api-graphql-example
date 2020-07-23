@@ -26,34 +26,12 @@ class PushGenerator
 
     /**
      * PushGenerator constructor.
-     * @param array $tokens
-     * @param FCMMessage $FCMmessage
      * @param FCMService $FCMService
      */
     public function __construct(FCMService $FCMService)
     {
         $this->FCMservice = $FCMService;
     }
-
-
-//    /**
-//     * @param array $tokens
-//     * @param FCMMessage $FCMmessage
-//     * @param FCMService $FCMService
-//     */
-//    public function build(array $tokens, FCMMessage $FCMmessage, FCMService $FCMService) {
-//        if (empty($tokens)) {
-//            throw new \RuntimeException('Массив $tokens не должен быть пустым!');
-//        }
-//        $this->tokens = $tokens;
-//        $this->FCMmessage = $FCMmessage;
-//        $this->FCMservice = new FCMService(new Logger());
-//    }
-//
-//    public function isBuild(): bool
-//    {
-//        return ($this->getTokens() && $this->getFCMmessage() && $this->getFCMservice());
-//    }
 
     /**
      * @return array
@@ -114,14 +92,8 @@ class PushGenerator
         return [
             'message' 	=> $this->getFCMmessage()->getMessage(),
             'title'		=> $this->getFCMmessage()->getTitle(),
-//            'subtitle'	=> $this->getFCMmessage()->getSubTitle(),
-//            'vibrate'	=> $this->getFCMmessage()->getVibrate(),
-//            'sound'		=> $this->getFCMmessage()->getSound(),
-//            'largeIcon'	=> $this->getFCMmessage()->getLargeIcon(),
-//            'smallIcon'	=> $this->getFCMmessage()->getSmallIcon()
         ];
     }
-
 
     public function generate(): void
     {

@@ -21,29 +21,10 @@ class CreateAdvertisementRequestFormType extends AbstractType
     {
 	    $builder
 		    ->add('categoryAdvertisementId', Type\IntegerType::class, [
-//            'required' => false
             ])
-//            ->add('cover', FileType::class, [ 'data_class' => null ])
-//		    ->add('bodyAdvertisement', CollectionType::class, [
-//                'entry_type' => CreateBodyAdvertisementRequestFormType::class,
-//                'allow_add' => true,
-//               'entry_options' => ['label' => false],
-//                'by_reference' => false,
-//               'required' => false
-//            ])
             ->add('bodyAdvertisement', CreateBodyAdvertisementRequestFormType::class)
-//		    ->add('address', CollectionType::class, [
-//                'entry_type' => CreateAddressRequestFormType::class,
-//                'allow_add' => true,
-//                'entry_options' => ['label' => false],
-//                'by_reference' => false,
-//                'required' => false
-//            ])
             ->add('address', CreateAddressRequestFormType::class)
-		    ->add('subwayStation', Type\TextType::class, [
-//                'required' => false
-            ])
-//            ->add('photos', Type\TextType::class);
+		    ->add('subwayStation', Type\TextType::class)
             ->add('photos', CollectionType::class, [
                     'entry_type' => Type\TextType::class,
                     'allow_add' => true,
@@ -60,8 +41,6 @@ class CreateAdvertisementRequestFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => CreateAdvertisementRequestCommand::class,
-            //'data_class' => null,
-	        // enable/disable CSRF protection for this form
 	        'csrf_protection' => false
         ]);
     }

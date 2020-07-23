@@ -41,7 +41,8 @@ class AdvertisementStatusTypeListResolver extends BaseResolver implements Resolv
 
     /**
      * @param Argument $args
-     * @return array
+     * @return \App\Model\Advertisement\Entity\AdvertisementStatusType[][]|array[]
+     * @throws GraphQLException
      */
     public function resolve(Argument $args)
     {

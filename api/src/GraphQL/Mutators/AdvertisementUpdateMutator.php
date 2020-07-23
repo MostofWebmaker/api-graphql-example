@@ -53,30 +53,15 @@ class AdvertisementUpdateMutator extends BaseMutator implements MutationInterfac
 
     /**
      * @param Argument $args
-     * @return Advertisement|null
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @return |null
+     * @throws GraphQLException
      */
     public function __invoke(Argument $args)
     {
 	    $input = $args['input'] ?? [];
 	    if (!$input) {
 		    throw GraphQLException::fromString('Отсутствует тело запроса!');
-		    //throw new \RuntimeException('bad_request');
 	    }
-        //dd('мы здесь!');
-
-        //$input = 'testtesttest';
-//        $validator = Validation::createValidator();
-//        $constraints = [
-//            new CustomCollection([
-//                 /*'fields' => [
-//                     'one' => new Length(array('min' => 10))
-//                 ]*/
-//            ])
-//        ];
-//
-//        $violationList = $validator->validate($input, $constraints);
 
         $request = new UpdateAdvertisementRequestCommand();
 
@@ -86,12 +71,9 @@ class AdvertisementUpdateMutator extends BaseMutator implements MutationInterfac
         $form->submit($input);
 
 	    if (!($form->isSubmitted() && $form->isValid())) {
-
 		    throw GraphQLException::fromFormErrors($form);
-		    //throw new \RuntimeException('bad_request submit');
 	    }
-	    //сделать автозагрузку
-	    //$status = new AdvertisementStatus();
+
         try {
             $advertisement = $this->feature->updateAdvertisement($request, $this->user);
         }  catch (\RuntimeException $exception) {
@@ -100,14 +82,3 @@ class AdvertisementUpdateMutator extends BaseMutator implements MutationInterfac
 	    return  $advertisement ?? null;
     }
 }
-
-
-
-
-
-/*$csrfProvider = new SessionCsrfProvider($session, $csrfSecret);
-
-$formFactory = Forms::createFormFactoryBuilder()
-	// ...
-	->addExtension(new CsrfExtension($csrfProvider))
-	->getFormFactory();*/

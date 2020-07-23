@@ -119,9 +119,4 @@ class CreateAdvertisementRequestCommand
     {
         $this->photos = $photos;
     }
-
-//    public function __sleep()
-//    {
-//        return [];
-//    }
 }

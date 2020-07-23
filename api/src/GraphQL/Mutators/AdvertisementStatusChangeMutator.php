@@ -57,6 +57,7 @@ class AdvertisementStatusChangeMutator extends BaseMutator implements MutationIn
     /**
      * @param Argument $args
      * @return AdvertisementStatus|null
+     * @throws GraphQLException
      */
     public function __invoke(Argument $args)
     {
@@ -84,14 +85,3 @@ class AdvertisementStatusChangeMutator extends BaseMutator implements MutationIn
 	    return $advertismentStatus ?? null;
     }
 }
-
-
-
-
-
-/*$csrfProvider = new SessionCsrfProvider($session, $csrfSecret);
-
-$formFactory = Forms::createFormFactoryBuilder()
-	// ...
-	->addExtension(new CsrfExtension($csrfProvider))
-	->getFormFactory();*/

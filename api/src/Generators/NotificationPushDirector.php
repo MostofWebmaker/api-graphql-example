@@ -55,11 +55,6 @@ class NotificationPushDirector
      */
     private SessionGenerator $sessionGenerator;
 
-//    /**
-//     * @var NotificationMessage|null
-//     */
-//    private ?NotificationMessage $notificationMessage = null;
-
     /**
      * @param EventType $eventType
      * @param User $user
@@ -110,9 +105,6 @@ class NotificationPushDirector
         if (!$this->isBuild()) {
             throw new \RuntimeException('Сборка обьекта NotificationPushDirector завершилсь неудачей!');
         }
-        /*if (!$notificationMessage = $this->notificationGenerator->getNotificationMessage()) {
-            throw new \RuntimeException('Не получен обьект NotificationMessage');
-        }*/
         //генерация notification
         $this->notificationGenerator->setUser($this->getUser());
         $this->notificationGenerator->setEventType($this->getEventType());
@@ -133,7 +125,6 @@ class NotificationPushDirector
 
         //проверка NotificationSettings на отправку пуша
         //генерация push уведомления пока временно отключено /обьединить со следующим условием
-        //if (false) {
         $token = $this->getUser()->getSession()? $this->getUser()->getSession()->getDeviceId() : '';
         if ($this->sessionGenerator->check($this->getUser()) && $token && false !== strpos($token, $_ENV['EXPO_PUSH_TOKEN_EXAMPLE'])) {
             $this->fcmMessage->build($notificationMessage);
@@ -289,22 +280,6 @@ class NotificationPushDirector
     {
         $this->sessionGenerator = $sessionGenerator;
     }
-
-//    /**
-//     * @return NotificationMessage|null
-//     */
-//    public function getNotificationMessage(): ?NotificationMessage
-//    {
-//        return $this->notificationMessage;
-//    }
-//
-//    /**
-//     * @param NotificationMessage|null $notificationMessage
-//     */
-//    public function setNotificationMessage(?NotificationMessage $notificationMessage): void
-//    {
-//        $this->notificationMessage = $notificationMessage;
-//    }
 }
 
 

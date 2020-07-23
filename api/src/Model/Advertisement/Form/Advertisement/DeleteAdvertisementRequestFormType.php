@@ -33,7 +33,6 @@ class DeleteAdvertisementRequestFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => DeleteAdvertisementRequestCommand::class,
-	        // enable/disable CSRF protection for this form
 	        'csrf_protection' => false
         ]);
     }

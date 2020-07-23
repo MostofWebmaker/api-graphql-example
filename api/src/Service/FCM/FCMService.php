@@ -74,14 +74,11 @@ class FCMService
             if ($code != 200) {
                 $tokensString = implode(', ', $tokens);
                 throw new \RuntimeException("'Отправка push уведомления для device_ids {$tokensString} завершилась неудачей!");
-                //throw new \RuntimeException($response->getStatusCode());
-               // throw new ClientException("Отправка push уведомления для device_ids {$tokensString} завершилась неудачей!", $request, $response);
             }
         } catch (\RuntimeException $e) {
             $this->logger->critical($e->getMessage());
             $response->getBody()->getContents();
             throw new \RuntimeException($response);
-            //throw new ClientException($e->getMessage(), $request, $response);
         }
     }
 }

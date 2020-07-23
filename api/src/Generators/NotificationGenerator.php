@@ -216,7 +216,6 @@ class NotificationGenerator
                 $resultTitleText = $this->getCustomMessage() ? ($this->getCustomMessage()->getTitle() ? $this->getCustomMessage()->getTitle() : $titleEventText) : $titleEventText;
                 $bodyText = "$firstBodyText{$this->user->getName()->getFIO()}! Ваш пользовательский аккаунт переведен в статус '{$this->getUserStatus()->getUserStatusType()->getDescription()}'. Обновления в приложении увидите через несколько минут.";
                 $resultBodyText = $this->getCustomMessage() ? ($this->getCustomMessage()->getBody() ? $this->getCustomMessage()->getBody() : $bodyText) : $bodyText;
-                //return new NotificationMessage($resultTitleText, $resultBodyText);
                 $this->notificationMessage->build($resultTitleText, $resultBodyText);
                 if (!$this->notificationMessage->isBuild()) {
                     throw new \RuntimeException('Сборка обьекта NotificationMessage завершилась ошибкой!');
@@ -238,17 +237,6 @@ class NotificationGenerator
                     throw new \RuntimeException('Сборка обьекта NotificationMessage завершилась ошибкой!');
                 }
                 return $this->getNotificationMessage();
-//            case 3:
-////                /*if (!$this->getAdvertisementStatus()) {
-////                    throw new \RuntimeException('Отсутcтвует сущность статуса объявления!');
-////                }*/
-////                if (!$titleEventText = $this->eventType->getName()) {
-////                    throw new \RuntimeException('Отсутcтвует наименование типа события!');
-////                }
-////                $resultTitleText = $this->getCustomMessage()->getTitle() ?? $titleEventText;
-////                $resultBodyText = $this->getCustomMessage()->getBody() ?? "Уважаемый, {$this->user->getName()->getFIO()}!";
-////                return new NotificationMessage($resultTitleText, $resultBodyText);
-////                return 0;
                 break;
             default:
                 if (!$titleEventText = $this->eventType->getName()) {
@@ -256,7 +244,6 @@ class NotificationGenerator
                 }
                 $resultTitleText = $this->getCustomMessage() ? ($this->getCustomMessage()->getTitle() ? $this->getCustomMessage()->getTitle() : $titleEventText) :$titleEventText;
                 $resultBodyText = $this->getCustomMessage()  ? ($this->getCustomMessage()->getBody() ? $this->getCustomMessage()->getBody() : $this->getEventType()->getDescription()) : $this->getEventType()->getDescription();
-                //return new NotificationMessage($resultTitleText, $resultBodyText);
                 $this->notificationMessage->build($resultTitleText, $resultBodyText);
                 if (!$this->notificationMessage->isBuild()) {
                     throw new \RuntimeException('Сборка обьекта NotificationMessage завершилась ошибкой!');

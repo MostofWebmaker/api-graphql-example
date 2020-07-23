@@ -45,6 +45,7 @@ class AdvertisementDeleteMutator extends BaseMutator implements MutationInterfac
     /**
      * @param Argument $args
      * @return bool[]
+     * @throws GraphQLException
      */
     public function __invoke(Argument $args)
     {
@@ -71,14 +72,3 @@ class AdvertisementDeleteMutator extends BaseMutator implements MutationInterfac
         return ['result' => true];
     }
 }
-
-
-
-
-
-/*$csrfProvider = new SessionCsrfProvider($session, $csrfSecret);
-
-$formFactory = Forms::createFormFactoryBuilder()
-	// ...
-	->addExtension(new CsrfExtension($csrfProvider))
-	->getFormFactory();*/

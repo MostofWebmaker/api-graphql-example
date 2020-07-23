@@ -28,14 +28,6 @@ class UpdateBodyAdvertisementRequestFormType extends AbstractType
 		    ->add('title',Type\TextType::class)
 		    ->add('price', Type\IntegerType::class)
 		    ->add('description', Type\TextType::class);
-//            ->add('photos', CollectionType::class, [
-//                'entry_type' => Type\TextType::class,
-//                'allow_add' => true,
-//                'entry_options' => ['label' => false],
-//                'by_reference' => false,
-//                'required' => false
-//            ]);
-
     }
 
     /**
@@ -44,10 +36,8 @@ class UpdateBodyAdvertisementRequestFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            //'data_class' => BodyAdvertisement::class,
             'data_class' => UpdateBodyAdvertisementRequestCommand::class,
-	        // enable/disable CSRF protection for this form
-//	        'csrf_protection' => false
+            'csrf_protection' => false
         ]);
     }
 }

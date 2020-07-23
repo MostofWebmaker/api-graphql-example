@@ -24,7 +24,6 @@ class CreateBodyAdvertisementRequestFormType extends AbstractType
 		    ->add('title',Type\TextType::class)
 		    ->add('price', Type\IntegerType::class)
 		    ->add('description', Type\TextType::class);
-//		    ->add('imageUrl');
     }
 
     /**
@@ -33,10 +32,7 @@ class CreateBodyAdvertisementRequestFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            //'data_class' => BodyAdvertisement::class,
-            'data_class' => CreateBodyAdvertisementRequestCommand::class,
-	        // enable/disable CSRF protection for this form
-//	        'csrf_protection' => false
+            'data_class' => CreateBodyAdvertisementRequestCommand::class
         ]);
     }
 }

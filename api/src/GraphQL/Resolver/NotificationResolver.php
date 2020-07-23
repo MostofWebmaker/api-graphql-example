@@ -41,7 +41,8 @@ class NotificationResolver extends BaseResolver implements ResolverInterface, Al
 
     /**
      * @param Argument $args
-     * @return object|null
+     * @return |null
+     * @throws GraphQLException
      */
     public function resolve(Argument $args)
     {

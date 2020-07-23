@@ -46,15 +46,13 @@ class AdvertisementCreateMutator extends BaseMutator implements MutationInterfac
     /**
      * @param Argument $args
      * @return Advertisement|null
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws GraphQLException
      */
     public function __invoke(Argument $args)
     {
 	    $input = $args['input'] ?? [];
 	    if (!$input) {
 		    throw GraphQLException::fromString('Отсутствует тело запроса!');
-		    //throw new \RuntimeException('bad_request');
 	    }
         $request = new CreateAdvertisementRequestCommand();
 
@@ -66,7 +64,6 @@ class AdvertisementCreateMutator extends BaseMutator implements MutationInterfac
 	    if (!($form->isSubmitted() && $form->isValid())) {
 
 		    throw GraphQLException::fromFormErrors($form);
-		    //throw new \RuntimeException('bad_request submit');
 	    }
 
         try {
@@ -77,14 +74,3 @@ class AdvertisementCreateMutator extends BaseMutator implements MutationInterfac
         return $advertisement ?? null;
     }
 }
-
-
-
-
-
-/*$csrfProvider = new SessionCsrfProvider($session, $csrfSecret);
-
-$formFactory = Forms::createFormFactoryBuilder()
-	// ...
-	->addExtension(new CsrfExtension($csrfProvider))
-	->getFormFactory();*/

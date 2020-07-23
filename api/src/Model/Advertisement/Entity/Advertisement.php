@@ -37,16 +37,6 @@ class Advertisement
 	 */
     private BodyAdvertisement $bodyAdvertisement;
 
-//	/**
-//	 * @ORM\OneToMany(targetEntity="App\Model\Advertisement\Entity\PropertyGroup", cascade={"persist", "remove"}, mappedBy="advertisement")
-//	 */
-//    private ?Collection $propertyGroups = null;
-//
-//    /**
-//	 * @ORM\OneToMany(targetEntity="App\Model\Advertisement\Entity\Property", cascade={"persist", "remove"}, mappedBy="advertisement")
-//	 */
-//    private ?Collection $properties = null;
-
 	/**
 	 * @Assert\NotBlank(message="Address cannot be blank.")
 	 * @ORM\ManyToOne(targetEntity="App\Model\Advertisement\Entity\Address", cascade={"persist", "remove"})
@@ -57,14 +47,6 @@ class Advertisement
 	 * @ORM\ManyToOne(targetEntity="App\Model\Advertisement\Entity\SubwayStation", cascade={"persist"})
 	 */
     private ?SubwayStation $subwayStation = null;
-
-    //public
-
-//    /**
-//     * @ORM\ManyToMany(targetEntity="App\Model\User\Entity\User", mappedBy="User",  cascade={"persist", "remove"})
-//     * @ORM\JoinColumn(name="interestedUser", referencedColumnName="id", nullable=true)
-//     */
-//    private ?Collection $interestedUsers = null;
 
     /**
      * @Assert\NotBlank(message="User cannot be blank.")
@@ -173,164 +155,6 @@ class Advertisement
     {
         $this->bodyAdvertisement = $bodyAdvertisement;
     }
-//
-//    /**
-//     * @return PropertyGroup|null
-//     */
-//    public function getPropertyGroup(): ?PropertyGroup
-//    {
-//        return $this->propertyGroup;
-//    }
-//
-//    /**
-//     * @param PropertyGroup|null $propertyGroup
-//     */
-//    public function setPropertyGroup(?PropertyGroup $propertyGroup): void
-//    {
-//        $this->propertyGroup = $propertyGroup;
-//    }
-//
-//    /**
-//     * @return Property|null
-//     */
-//    public function getProperty(): ?Property
-//    {
-//        return $this->property;
-//    }
-//
-//    /**
-//     * @param Property|null $property
-//     */
-//    public function setProperty(?Property $property): void
-//    {
-//        $this->property = $property;
-//    }
-
-//    /**
-//     * @return Collection|null
-//     */
-//    public function getProperties(): ?Collection
-//    {
-//        return $this->properties;
-//    }
-//
-//    public function addProperty(Property $property): self
-//    {
-//        if (!$this->properties->contains($property)) {
-//            $this->properties[] = $property;
-//            $property->setAdvertisement($this);
-//        }
-//
-//        return $this;
-//    }
-//
-//    public function removeProperty(Property $property): self
-//    {
-//        if ($this->properties->contains($property)) {
-//            $this->properties->removeElement($property);
-//            // set the owning side to null (unless already changed)
-//            if ($property->getAdvertisement() === $this) {
-//                $property->setAdvertisement(null);
-//            }
-//        }
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * @return Collection|null
-//     */
-//    public function getPropertyGroups(): ?Collection
-//    {
-//        return $this->propertyGroups;
-//    }
-//
-//    public function addPropertyGroup(PropertyGroup $propertyGroup): self
-//    {
-//        if (!$this->properties->contains($propertyGroup)) {
-//            $this->properties[] = $propertyGroup;
-//            $propertyGroup->setAdvertisement($this);
-//        }
-//
-//        return $this;
-//    }
-//
-//    public function removePropertyGroup(PropertyGroup $propertyGroup): self
-//    {
-//        if ($this->properties->contains($propertyGroup)) {
-//            $this->properties->removeElement($propertyGroup);
-//            // set the owning side to null (unless already changed)
-//            if ($propertyGroup->getAdvertisement() === $this) {
-//                $propertyGroup->setAdvertisement(null);
-//            }
-//        }
-//
-//        return $this;
-//    }
-
-//    /**
-//     * @return Collection|null
-//     */
-//    public function getPropertyGroup(): ?Collection
-//    {
-//        return $this->propertyGroup;
-//    }
-//
-//    /**
-//     * @param Collection|null $propertyGroup
-//     */
-//    public function setPropertyGroup(?Collection $propertyGroup): void
-//    {
-//        $this->propertyGroup = $propertyGroup;
-//    }
-//
-//    /**
-//     * @return Collection|null
-//     */
-//    public function getProperty(): ?Collection
-//    {
-//        return $this->property;
-//    }
-//
-//    /**
-//     * @param Collection|null $property
-//     */
-//    public function setProperty(?Collection $property): void
-//    {
-//        $this->property = $property;
-//    }
-
-//    /**
-//     * @return mixed
-//     */
-//    public function getPropertyGroup()
-//    {
-//        return $this->propertyGroup;
-//    }
-//
-//    /**
-//     * @param mixed $propertyGroup
-//     */
-//    public function setPropertyGroup($propertyGroup): void
-//    {
-//        $this->propertyGroup = $propertyGroup;
-//    }
-//
-//    /**
-//     * @return mixed
-//     */
-//    public function getProperty()
-//    {
-//        return $this->property;
-//    }
-//
-//    /**
-//     * @param mixed $property
-//     */
-//    public function setProperty($property): void
-//    {
-//        $this->property = $property;
-//    }
 
     /**
      * @return Address
@@ -535,43 +359,4 @@ class Advertisement
     {
         return [];
     }
-
-//    /**
-//     * @return Collection|null
-//     */
-//    public function getInterestedUsers(): ?Collection
-//    {
-//        return $this->interestedUsers;
-//    }
-//
-//    /**
-//     * @param User $user
-//     * @return $this
-//     */
-//    public function addInterestedUsers(User $user): self
-//    {
-//        if (!$this->interestedUsers->contains($user)) {
-//            $this->interestedUsers[] = $user;
-//            $user->addToFavoriteAdvertisements($this);
-//        }
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * @param User $user
-//     * @return $this
-//     */
-//    public function removeFromInterestedUsers(User $user): self
-//    {
-//        if ($this->interestedUsers->contains($user)) {
-//            $this->interestedUsers->removeElement($user);
-//            // set the owning side to null (unless already changed)
-//            if ($user->getFavoriteAdvertisements() === $this) {
-//                $user->addToFavoriteAdvertisements(null);
-//            }
-//        }
-//
-//        return $this;
-//    }
 }

@@ -149,7 +149,6 @@ class AdvertisementStatusType
     {
         if ($this->advertisementStatuses->contains($advertisementStatus)) {
             $this->advertisementStatuses->removeElement($advertisementStatus);
-            // set the owning side to null (unless already changed)
             if ($advertisementStatus->getAdvertisementStatusType() === $this) {
                 $advertisementStatus->setAdvertisementStatusType(null);
             }

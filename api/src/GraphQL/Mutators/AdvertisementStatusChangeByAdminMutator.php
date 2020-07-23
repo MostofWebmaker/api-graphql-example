@@ -58,7 +58,8 @@ class AdvertisementStatusChangeByAdminMutator extends BaseMutator implements Mut
 
     /**
      * @param Argument $args
-     * @return AdvertisementStatus|null
+     * @return |null
+     * @throws GraphQLException
      */
     public function __invoke(Argument $args)
     {
@@ -89,14 +90,3 @@ class AdvertisementStatusChangeByAdminMutator extends BaseMutator implements Mut
 	    return $advertismentStatus ?? null;
     }
 }
-
-
-
-
-
-/*$csrfProvider = new SessionCsrfProvider($session, $csrfSecret);
-
-$formFactory = Forms::createFormFactoryBuilder()
-	// ...
-	->addExtension(new CsrfExtension($csrfProvider))
-	->getFormFactory();*/

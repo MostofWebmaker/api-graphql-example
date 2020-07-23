@@ -17,17 +17,6 @@ class NotificationMessage
      */
     private ?string $body = null;
 
-//    /**
-//     * NotificationMessage constructor.
-//     * @param int $title
-//     * @param string $body
-//     */
-//    public function __construct(int $title, string $body)
-//    {
-//        $this->title = $title;
-//        $this->body = $body;
-//    }
-
     /**
      * NotificationMessage constructor.
      */
@@ -47,7 +36,6 @@ class NotificationMessage
         $this->title = $title;
         $this->body = $body;
     }
-
 
     /**
      * @return string

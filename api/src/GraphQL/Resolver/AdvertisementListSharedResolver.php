@@ -37,7 +37,8 @@ class AdvertisementListSharedResolver extends BaseResolver implements ResolverIn
 
     /**
      * @param Argument $args
-     * @return array
+     * @return array[]
+     * @throws GraphQLException
      */
     public function resolve(Argument $args)
     {

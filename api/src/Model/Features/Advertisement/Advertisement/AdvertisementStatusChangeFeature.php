@@ -85,7 +85,6 @@ class AdvertisementStatusChangeFeature
         }
         //проверка на корректность перевода статуса обьявления
         if (!in_array($command->getStatusId(), array_keys(AdvertisementStatusType::ADVERTISEMENT_USER_STATUS_LIST))) {
-            //throw GraphQLException::fromString('Доступ запрещен.');
             throw new \RuntimeException("Доступ запрещен!");
         }
     	$this->flusher->beginTransaction();

@@ -66,8 +66,7 @@ class AdvertisementListResolver extends BaseResolver implements ResolverInterfac
     /**
      * @param Argument $args
      * @return \App\Model\Advertisement\Entity\Advertisement[][]
-     * @throws DBALException
-     * @throws QueryException
+     * @throws GraphQLException
      */
     public function resolve(Argument $args)
     {
@@ -83,7 +82,6 @@ class AdvertisementListResolver extends BaseResolver implements ResolverInterfac
             $isAdmin = false;
             //полный список объявлений пользователя видит только сам пользователь и админ
             if ($this->security->isGranted('ROLE_ADMIN') && !in_array(User::ROLE_ADMIN, $this->user->getRoles())) {
-                //throw GraphQLException::fromString('Доступ запрещен. Менять статус пользователя разрешено только администратору!');
                 $isAdmin = true;
             } else if ($args['user_id'] && ($user->getUsername() !== $this->user->getUsername())) {
                 throw new \RuntimeException("Доступ запрещен. Полный список объявлений пользователя видит только сам пользователь!");

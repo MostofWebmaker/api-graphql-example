@@ -47,8 +47,6 @@ class UpdateAdvertisementRequestFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UpdateAdvertisementRequestCommand::class,
-            //'data_class' => null,
-	        // enable/disable CSRF protection for this form
 	        'csrf_protection' => false
         ]);
     }

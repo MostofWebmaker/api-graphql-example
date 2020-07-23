@@ -155,7 +155,6 @@ class AdvertisementCreateFeature
         }
     	$this->flusher->beginTransaction();
 	    try {
-            //AdvertisementStatus $advertisementStatus
 	        //создать все сущности объявления
             $categoryAdvertisementId = $command->getCategoryAdvertisementId(); // достаточно ID категории
             /** @var CategoryAdvertisement $categoryAdvertisement */
@@ -197,7 +196,6 @@ class AdvertisementCreateFeature
             }
             $this->flusher->persist($address);
 
-            //$subwayStation = $command->getSubwayStation() ? new SubwayStation($command->getSubwayStation()) : null; //необязательный параметр
             /** @var SubwayStation $subwayStation */
             $subwayStation = $command->getSubwayStation() ? ($this->subwayStationRepository->getSubwayStationByName($command->getSubwayStation()) ? $this->subwayStationRepository->getSubwayStationByName($command->getSubwayStation()) : new SubwayStation($command->getSubwayStation())) : null;
 
@@ -232,7 +230,6 @@ class AdvertisementCreateFeature
 	    } catch (\RuntimeException $exception) {
 		    $this->logger->critical('Сообщение об ошибке #'.$exception->getMessage().' Создание объявления завершилось неудачей!');
 		    $this->flusher->rollback();
-            //throw GraphQLException::fromString($exception->getMessage());
             throw new \RuntimeException($exception->getMessage());
 	    }
         return $advertisement ?? null;

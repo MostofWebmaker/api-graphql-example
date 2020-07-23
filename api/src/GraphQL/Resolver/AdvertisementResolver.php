@@ -37,7 +37,8 @@ class AdvertisementResolver extends BaseResolver implements ResolverInterface, A
 
     /**
      * @param Argument $args
-     * @return object|null
+     * @return |null
+     * @throws GraphQLException
      */
     public function resolve(Argument $args)
     {

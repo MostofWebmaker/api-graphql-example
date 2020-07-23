@@ -36,9 +36,7 @@ class UpdateAddressRequestFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            //'data_class' => Address::class,
             'data_class' => UpdateAddressRequestCommand::class,
-	        // enable/disable CSRF protection for this form
 	        'csrf_protection' => false
         ]);
     }
